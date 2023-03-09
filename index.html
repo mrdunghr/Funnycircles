@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Funny circles</title>
+</head>
+<body>
+<canvas id="myCanvas" width="1368px" height="768px" style="border:1px solid #d3d3d3;"></canvas>
+</body>
+<script>
+
+    //class
+    function Circle(x, y ,radius){
+        this.x = x;
+        this.y = y;
+        this.radius = radius;
+    }
+
+    // hàm vẽn hình tròn với các hàm của canvas
+    function createCircle(){
+        let color = getRandomColor();
+        let ctx = document.getElementById('myCanvas').getContext('2d');
+        let radius = Math.random() * 80 // hàm tạo bán kính của hình tròn ngẫn nhiên từ 0-80
+        let x = Math.random() * window.innerWidth;
+        let y = Math.random() * window.innerHeight;
+        let circle = new Circle(x, y, radius); //vẽ hình tron bằng class có sẵn
+        ctx.beginPath();
+        ctx.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI);
+        ctx.fillStyle = color;
+        ctx.fill();
+    }
+
+    //hàm random chỉ số và làm tròn xuống từ 0 - 255
+    function getRandomHex(){
+        return Math.floor(Math.random() * 255);
+    }
+
+
+    //hàm lấy mã màu RGB random
+    function getRandomColor(){
+        let red = getRandomHex()
+        let green = getRandomHex()
+        let blue = getRandomHex()
+        // return ' R' + red + ' G' + green + ' B' + blue
+        return "rgb(" + red + "," + blue + "," + green +")"
+        // console.log("rgb(" + red + "," + blue + "," + green +")")
+    }
+
+    // createCircle() // Hàm vẽ hình tròn
+    // createCircle() // Hàm vẽ hình tròn
+
+    //dùng for để xét điều kiện xuất bao nhiêu hình tròn ra màn hình
+    function createMultipleCircle(){
+        for (let i = 1; i <= 50; i++){
+            createCircle();
+        }
+    }
+    createMultipleCircle();
+</script>
+</html>
